@@ -57,7 +57,7 @@ app.get("/name",(req,res)=>{res.json({"name":`${req.query.first} ${req.query.las
 
 
 /** 12) Get data form POST  */
-
+app.post("/name",(req,res)=>{res.json({"name":`${req.body.first} ${req.body.last}`})});
 
 
 // This would be part of the basic setup of an Express app

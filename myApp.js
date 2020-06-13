@@ -21,10 +21,13 @@ app.get("/",(req,res)=>res.sendFile(`${__dirname}/views/index.html`));
 app.use(express.static(`${__dirname}/public`));
 
 /** 5) serve JSON on a specific route */
-app.get("/json",(req,res)=>res.json({"message":"Hello json"}));
+// app.get("/json",(req,res)=>res.json({"message":"Hello json"}));
 
 /** 6) Use the .env file to configure the app */
- 
+require('dotenv').config();
+let messageStyle = process.env.MESSAGE_STYLE;
+let message = messageStyle == "uppercase" ? "HELLO JSON" : "Hello json";
+app.get("/json",(req,res)=>res.json({"message":message}));
  
 /** 7) Root-level Middleware - A logger */
 //  place it before all the routes !

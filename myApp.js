@@ -25,9 +25,11 @@ app.use(express.static(`${__dirname}/public`));
 
 /** 6) Use the .env file to configure the app */
 require('dotenv').config();
-let messageStyle = process.env.MESSAGE_STYLE;
-let message = messageStyle == "uppercase" ? "HELLO JSON" : "Hello json";
-app.get("/json",(req,res)=>res.json({"message":message}));
+app.get("/json",(req,res)=>{
+    let messageStyle = process.env.MESSAGE_STYLE;
+    let message = messageStyle == "uppercase" ? "HELLO JSON" : "Hello json";
+    res.json({"message":message})
+});
 
 /** 7) Root-level Middleware - A logger */
 //  place it before all the routes !
